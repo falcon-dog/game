@@ -1,5 +1,5 @@
 # game
 
-to play: https://falcons2013.github.io/game/
+to play: https://falcon-dog.github.io/game/
 
-template: https://falcons2013.github.io/game/template.html
+template: https://falcon-dog.github.io/game/template.html
