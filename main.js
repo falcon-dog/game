@@ -13,7 +13,7 @@ var gameOver = false;
 let cursors;
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody} */
 let player; //todo: use class to construct instead
-let player_max_health = 200;
+let player_max_health = 222;
 let player_health = player_max_health;  
 
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody[]} */
