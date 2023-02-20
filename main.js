@@ -13,7 +13,7 @@ var gameOver = false;
 let cursors;
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody} */
 let player; //todo: use class to construct instead
-let player_max_health = 200;
+let player_max_health = 201;
 let player_health = player_max_health;  
 
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody[]} */
@@ -120,7 +120,7 @@ class GameScene extends Phaser.Scene {
         if (player_health <= 0) {
             player.anims.play("death", true);
             player.setVelocityX(0);
-            player.setVelocityY(-10);
+            player.setVelocityY(50);
             return;
         }
         if (cursors.up.isDown) {
