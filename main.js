@@ -154,7 +154,7 @@ class GameScene extends Phaser.Scene {
         // update enemy ai
 
         // Looped over all sqrls, are none touching??
-        if (no_sqlr_touch) {
+        if (no_sqrl_touch) {
             // todo, don't update every frame, maybe random 1 in 10
             player_health += 1;
         }
