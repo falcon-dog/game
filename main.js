@@ -10,7 +10,7 @@ const HUD_LAYER = 3;
 let cursors;
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody} */
 let player; //todo: use class to construct instead
-let player_health = 200;
+let player_health = 200;  // Was 400, testing changes.
 
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody[]} */
 let enemies = [];
