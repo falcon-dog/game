@@ -158,7 +158,7 @@ class GameScene extends Phaser.Scene {
         if (no_sqrl_touch) {
             if (player_health < player_max_health) {
                 let rand_roll = Phaser.Math.Between(1, 100);
-                if (rand_roll >= 90) {
+                if (rand_roll >= 99) {
                     player_health += 1;
                 }
             }
