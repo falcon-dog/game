@@ -172,7 +172,8 @@ class GameScene extends Phaser.Scene {
         }
         
         if (player_health <= 0) {
-            var gameOver = true;
+            gameOver = true;
+            player_health = -33; // Just so we can see the cache is clear. Debugging...
         }
     
         
