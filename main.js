@@ -13,7 +13,7 @@ var gameOver = false;
 let cursors;
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody} */
 let player; //todo: use class to construct instead
-let player_max_health = 222;
+let player_max_health = 200;
 let player_health = player_max_health;  
 
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody[]} */
@@ -109,9 +109,7 @@ class GameScene extends Phaser.Scene {
         }
     }
     update() {
-        if (gameOver) {
-            return;
-        }
+
         
         const MAX_VEL = 100;
         health_hud.setText(`HP: ${player_health}`);
@@ -121,6 +119,9 @@ class GameScene extends Phaser.Scene {
 
         if (player_health <= 0) {
             player.anims.play("death", true);
+            player.setVelocityX(0);
+            player.setVelocityY(-10);
+            return;
         }
         if (cursors.up.isDown) {
             player.setVelocityY(-MAX_VEL);
@@ -171,9 +172,8 @@ class GameScene extends Phaser.Scene {
             }
         }
         
-        if (player_health <= 0) {
+        if (player_health < 0) {
             gameOver = true;
-            player_health = -33; // Just so we can see the cache is clear. Debugging...
         }
     
         
