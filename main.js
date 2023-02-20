@@ -134,6 +134,9 @@ class GameScene extends Phaser.Scene {
             player.anims.play("right_bark", true);
         }
 
+        // Nick is going to try to add code to heal if touching no sqrls
+        
+        let no_sqrl_touch = true;
         // per frame? should be something else
         for (let sqrl of enemies) {
             // get direction vector towards the player
@@ -143,11 +146,19 @@ class GameScene extends Phaser.Scene {
             this.physics.accelerateToObject(sqrl, player, 50, 80, 80);
             this.physics.overlap(player, sqrl, (pl, en) => {
                 player_health -= 1;
+                no_sqrl_touch = false;
             })
             //sqrl.setVelocityX(ran_x_vel);
             //sqrl.setVelocityY(ran_y_vel);
         }
         // update enemy ai
+
+        // Looped over all sqrls, are none touching??
+        if (no_sqlr_touch) {
+            // todo, don't update every frame, maybe random 1 in 10
+            player_health += 1;
+        }
+        
     }
 }
 
