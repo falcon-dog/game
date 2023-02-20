@@ -10,7 +10,8 @@ const HUD_LAYER = 3;
 let cursors;
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody} */
 let player; //todo: use class to construct instead
-let player_health = 200;  // Was 400, testing changes.
+let player_max_health = 200;
+let player_health = player_max_health;  
 
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody[]} */
 let enemies = [];
@@ -155,8 +156,12 @@ class GameScene extends Phaser.Scene {
 
         // Looped over all sqrls, are none touching??
         if (no_sqrl_touch) {
-            // todo, don't update every frame, maybe random 1 in 10
-            player_health += 1;
+            if (player_health < player_max_health) {
+                let rand_roll = Phaser.Math.Between(1, 100);
+                if (rand_roll >= 90) {
+                    player_health += 1;
+                }
+            }
         }
         
     }
