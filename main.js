@@ -6,6 +6,9 @@ const BG_LAYER = 0; //background, tiles
 const MOB_LAYER = 1; //players
 const HUD_LAYER = 3;
 
+var gameOver = false;
+
+
 /** @type {Phaser.Types.Curves} */
 let cursors;
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody} */
@@ -106,6 +109,10 @@ class GameScene extends Phaser.Scene {
         }
     }
     update() {
+        if (gameOver) {
+            return;
+        }
+        
         const MAX_VEL = 100;
         health_hud.setText(`HP: ${player_health}`);
         health_hud.x = player.x;
@@ -163,6 +170,11 @@ class GameScene extends Phaser.Scene {
                 }
             }
         }
+        
+        if (player_health <= 0) {
+            var gameOver = true;
+        }
+    
         
     }
 }
