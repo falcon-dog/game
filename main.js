@@ -14,7 +14,7 @@ let cursors;
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody} */
 let player; //todo: use class to construct instead
 let player_max_health = 200;
-let player_health = player_max_health - 80;  
+let player_health = player_max_health - 0;  
 
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody[]} */
 let enemies = [];
@@ -169,20 +169,30 @@ class GameScene extends Phaser.Scene {
         // per frame? should be something else
         for (let sqrl of enemies) {
             // get direction vector towards the player
-            let ran_x_vel = Phaser.Math.Between(20, 100);
-            let ran_y_vel = Phaser.Math.Between(20, 100);
+            //let ran_x_vel = Phaser.Math.Between(20, 100);
+            //let ran_y_vel = Phaser.Math.Between(20, 100);
 
+            // check vel before and after set accel. If it switches, then switch facing.
+            let x_vel = sqrl.body.velocity.x;
+            let is_face_left = true;
+            if (x_vel < 0) {
+                is_face_left = false;
+            }            
+            
             this.physics.accelerateToObject(sqrl, player, 50, 80, 80);
+
+            x_vel = sqrl.body.velocity.x;
+            // did the velocity change directions?
+            if (x_vel < 0) {
+                is_face_left = false;
+            }        
+            
             this.physics.overlap(player, sqrl, (pl, en) => {
                 player_health -= 1;
                 no_sqrl_touch = false;
             })
-            let x_vel = sqrl.body.velocity;
-            console.log('bb');
-            console.log(x_vel);
-            let xx_vel = sqrl.body.velocity.x;
-            console.log('bb');
-            console.log(xx_vel);
+            //console.log('cc');
+            //console.log(x_vel);
             
             //sqrl.setVelocityX(ran_x_vel);
             //sqrl.setVelocityY(ran_y_vel);
