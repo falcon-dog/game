@@ -13,11 +13,12 @@ var gameOver = false;
 let cursors;
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody} */
 let player; //todo: use class to construct instead
-let player_max_health = 201;
+let player_max_health = 200;
 let player_health = player_max_health;  
 
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody[]} */
 let enemies = [];
+let crates = [];
 let space_key;
 
 /**  @type {Phaser.GameObjects. Text } */
@@ -33,6 +34,7 @@ class GameScene extends Phaser.Scene {
         this.load.image('sky', 'assets/sky.png');
         this.load.spritesheet('dog', "assets/dogan.png", { frameWidth: 32, frameHeight: 32 });
         this.load.spritesheet('sqrl', "assets/sqrl.png", { frameWidth: 32, frameHeight: 32 });
+        this.load.spritesheet('HELTH', "assets/HELTH.png", { frameWidth: 19, frameHeight: 14 });
     }
     create() {
         health_hud = this.add.text(0, 0, `HP: ${player_health}`);
@@ -78,7 +80,19 @@ class GameScene extends Phaser.Scene {
             frames: this.anims.generateFrameNumbers('dog', { start: 16, end: 18 }),
             frameRate: 10,
         });
-
+        this.anims.create({
+            key: 'health_a',
+            frames: this.anims.generateFrameNumbers('HELTH', { start: 0, end: 1 }),
+            frameRate: 12,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'health_b',
+            frames: this.anims.generateFrameNumbers('HELTH', { start: 0, end: 1 }),
+            frameRate: 12,
+            repeat: -1
+        });
+        
         this.anims.create({
             key: 'sqrl_left',
             frames: this.anims.generateFrameNumbers('sqrl', { start: 0, end: 1 }),
@@ -107,6 +121,13 @@ class GameScene extends Phaser.Scene {
             enemy.setDepth(MOB_LAYER);
             enemies.push(enemy);
         }
+        for (let i = 0; i < 4; i++) {
+            let crate = this.physics.add.sprite(Phaser.Math.Between(0, WIDTH), Phaser.Math.Between(0, HEIGHT));
+            crate.anims.play("health_a");
+            console.log(crate);
+            crate.setDepth(MOB_LAYER);
+            crates.push(crate);
+        }        
     }
     update() {
 
