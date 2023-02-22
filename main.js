@@ -177,7 +177,7 @@ class GameScene extends Phaser.Scene {
                 player_health -= 1;
                 no_sqrl_touch = false;
             })
-            x_vel = sqrl.velocity;
+            let x_vel = sqrl.velocity;
             console.log('aa');
             console.log(x_vel);
             x_vel = sqrl.body.velocity;
