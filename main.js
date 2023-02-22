@@ -14,7 +14,7 @@ let cursors;
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody} */
 let player; //todo: use class to construct instead
 let player_max_health = 200;
-let player_health = player_max_health;  
+let player_health = player_max_health - 20;  
 
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody[]} */
 let enemies = [];
@@ -164,7 +164,6 @@ class GameScene extends Phaser.Scene {
             player.anims.play("right_bark", true);
         }
 
-        // Nick is going to try to add code to heal if touching no sqrls
         
         let no_sqrl_touch = true;
         // per frame? should be something else
@@ -186,12 +185,23 @@ class GameScene extends Phaser.Scene {
         // Looped over all sqrls, are none touching??
         if (no_sqrl_touch) {
             if (player_health < player_max_health) {
-                let rand_roll = Phaser.Math.Between(1, 100);
-                if (rand_roll >= 99) {
+                let rand_roll = Phaser.Math.Between(1, 1000);
+                if (rand_roll >= 999) {
                     player_health += 1;
                 }
             }
         }
+        
+        for (let box of crates) {
+
+            this.physics.overlap(player, box, (pl, en) => {
+                player_health += 100;
+                // To do, also remove the crate from the board (maybe replace it with a new one?)
+                // Or maybe don't remove it, just move it to a new random spot on the map...
+            })
+        }        
+        
+        
         
         if (player_health < 0) {
             gameOver = true;
