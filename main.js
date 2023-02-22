@@ -14,7 +14,7 @@ let cursors;
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody} */
 let player; //todo: use class to construct instead
 let player_max_health = 200;
-let player_health = player_max_health - 20;  
+let player_health = player_max_health - 0;  
 
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody[]} */
 let enemies = [];
@@ -124,7 +124,7 @@ class GameScene extends Phaser.Scene {
         for (let i = 0; i < 4; i++) {
             let crate = this.physics.add.sprite(Phaser.Math.Between(0, WIDTH), Phaser.Math.Between(0, HEIGHT));
             crate.anims.play("health_a");
-            console.log(crate);
+            //console.log(crate);
             crate.setDepth(MOB_LAYER);
             crates.push(crate);
         }        
@@ -177,6 +177,13 @@ class GameScene extends Phaser.Scene {
                 player_health -= 1;
                 no_sqrl_touch = false;
             })
+            x_vel = sqrl.velocity;
+            console.log('aa');
+            console.log(x_vel);
+            x_vel = sqrl.body.velocity;
+            console.log('bb');
+            console.log(x_vel);
+            
             //sqrl.setVelocityX(ran_x_vel);
             //sqrl.setVelocityY(ran_y_vel);
         }
