@@ -14,7 +14,7 @@ let cursors;
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody} */
 let player; //todo: use class to construct instead
 let player_max_health = 200;
-let player_health = player_max_health - 20;  
+let player_health = player_max_health - 50;  
 
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody[]} */
 let enemies = [];
@@ -216,7 +216,9 @@ class GameScene extends Phaser.Scene {
                 
                 // To do, also remove the crate from the board (maybe replace it with a new one?)
                 // Or maybe don't remove it, just move it to a new random spot on the map...
-                this.setPosition(30,30);
+                this.physics.moveTo(box, 222,222);
+
+                //this.setPosition(30,30);
             })
         }        
         
