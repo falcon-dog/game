@@ -217,7 +217,7 @@ class GameScene extends Phaser.Scene {
                 // To do, also remove the crate from the board (maybe replace it with a new one?)
                 // Or maybe don't remove it, just move it to a new random spot on the map...
                 this.physics.moveTo(box, 222,222);
-console.log(this);
+///console.log(this);
                 
                 //this.setPosition(30,30);
             })
