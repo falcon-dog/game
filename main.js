@@ -14,7 +14,7 @@ let cursors;
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody} */
 let player; //todo: use class to construct instead
 let player_max_health = 200;
-let player_health = player_max_health - 50;  
+let player_health = player_max_health - 10;  
 
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody[]} */
 let enemies = [];
@@ -212,20 +212,17 @@ class GameScene extends Phaser.Scene {
         for (let box of crates) {
 
             this.physics.overlap(player, box, (pl, en) => {
-                player_health += 100;
+                player_health += 50;
                 
                 // To do, also remove the crate from the board (maybe replace it with a new one?)
                 // Or maybe don't remove it, just move it to a new random spot on the map...
                 //this.physics.moveTo(box, 222,222);
-                //console.log(this);
-                //this.x=55;
-                //this.y=99;
-                console.log('boxxxx');
-                console.log(box);
-                box.x = 99;
+                //console.log('boxxxx');
+                //console.log(box);
+                box.x = Phaser.Math.Between(1, WIDTH);
+                box.y = Phaser.Math.Between(1, HEIGHT);
                 
-                //this.setPosition(111,222); // This should work??
-                //this.setPosition(30,30);
+                //this.setPosition(111,222); // This should work??  // No, "this" isn't the box, maybe this is the scene or something
             })
         }        
         
