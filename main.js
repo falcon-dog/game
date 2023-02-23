@@ -14,7 +14,7 @@ let cursors;
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody} */
 let player; //todo: use class to construct instead
 let player_max_health = 200;
-let player_health = player_max_health - 30;  
+let player_health = player_max_health - 40;  
 
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody[]} */
 let enemies = [];
@@ -218,7 +218,7 @@ class GameScene extends Phaser.Scene {
                 // Or maybe don't remove it, just move it to a new random spot on the map...
                 this.physics.moveTo(box, 222,222);
                 //console.log(this);
-                
+                this.setPosition(111,222); // This should work??
                 //this.setPosition(30,30);
             })
         }        
