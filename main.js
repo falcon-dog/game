@@ -17,7 +17,7 @@ let cursors;
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody} */
 let player; //todo: use class to construct instead
 let player_max_health = 200;
-let player_health = player_max_health - 30;  
+let player_health = player_max_health - 60;  
 
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody[]} */
 let enemies = [];
@@ -118,14 +118,14 @@ class GameScene extends Phaser.Scene {
         player.height = 32;
 
         for (let i = 0; i < 4; i++) {
-            let enemy = this.physics.add.sprite(Phaser.Math.Between(0, LVL_WIDTH), Phaser.Math.Between(0, LVL_HEIGHT));
+            let enemy = this.physics.add.sprite(Phaser.Math.Between(0, LVL_WIDTH/2), Phaser.Math.Between(0, LVL_HEIGHT/2));
             enemy.anims.play("sqrl_right");
             //console.log(enemy);
             enemy.setDepth(MOB_LAYER);
             enemies.push(enemy);
         }
         for (let i = 0; i < 4; i++) {
-            let crate = this.physics.add.sprite(Phaser.Math.Between(0, LVL_WIDTH), Phaser.Math.Between(0, LVL_HEIGHT));
+            let crate = this.physics.add.sprite(Phaser.Math.Between(0, LVL_WIDTH/3), Phaser.Math.Between(0, LVL_HEIGHT/3));
             crate.anims.play("health_a");
             //console.log(crate);
             crate.setDepth(MOB_LAYER);
@@ -225,8 +225,8 @@ class GameScene extends Phaser.Scene {
                 //this.physics.moveTo(box, 222,222);
                 //console.log('boxxxx');
                 //console.log(box);
-                box.x = Phaser.Math.Between(1, LVL_WIDTH);
-                box.y = Phaser.Math.Between(1, LVL_HEIGHT);
+                box.x = Phaser.Math.Between((0 - (LVL_WIDTH/2))  , LVL_WIDTH/2);
+                box.y = Phaser.Math.Between((0 - (LVL_HEIGHT/2)) , LVL_HEIGHT/2);
                 
                 //this.setPosition(111,222); // This should work??  // No, "this" isn't the box, maybe this is the scene or something
             })
