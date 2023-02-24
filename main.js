@@ -1,6 +1,9 @@
 'use strict';
 const WIDTH = 512;
 const HEIGHT = 512;
+const LVL_WIDTH = 1229;
+const LVL_HEIGHT = 1024;
+
 
 const BG_LAYER = 0; //background, tiles
 const MOB_LAYER = 1; //players
@@ -115,14 +118,14 @@ class GameScene extends Phaser.Scene {
         player.height = 32;
 
         for (let i = 0; i < 4; i++) {
-            let enemy = this.physics.add.sprite(Phaser.Math.Between(0, WIDTH), Phaser.Math.Between(0, HEIGHT));
+            let enemy = this.physics.add.sprite(Phaser.Math.Between(0, LVL_WIDTH), Phaser.Math.Between(0, LVL_HEIGHT));
             enemy.anims.play("sqrl_right");
             //console.log(enemy);
             enemy.setDepth(MOB_LAYER);
             enemies.push(enemy);
         }
         for (let i = 0; i < 4; i++) {
-            let crate = this.physics.add.sprite(Phaser.Math.Between(0, WIDTH), Phaser.Math.Between(0, HEIGHT));
+            let crate = this.physics.add.sprite(Phaser.Math.Between(0, LVL_WIDTH), Phaser.Math.Between(0, LVL_HEIGHT));
             crate.anims.play("health_a");
             //console.log(crate);
             crate.setDepth(MOB_LAYER);
@@ -219,8 +222,8 @@ class GameScene extends Phaser.Scene {
                 //this.physics.moveTo(box, 222,222);
                 //console.log('boxxxx');
                 //console.log(box);
-                box.x = Phaser.Math.Between(1, WIDTH);
-                box.y = Phaser.Math.Between(1, HEIGHT);
+                box.x = Phaser.Math.Between(1, LVL_WIDTH);
+                box.y = Phaser.Math.Between(1, LVL_HEIGHT);
                 
                 //this.setPosition(111,222); // This should work??  // No, "this" isn't the box, maybe this is the scene or something
             })
