@@ -17,7 +17,7 @@ let cursors;
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody} */
 let player; //todo: use class to construct instead
 let player_max_health = 200;
-let player_health = player_max_health - 10;  
+let player_health = player_max_health - 30;  
 
 /** @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody[]} */
 let enemies = [];
@@ -165,6 +165,9 @@ class GameScene extends Phaser.Scene {
         if (space_key.isDown) {
             //moving right, so bark right
             player.anims.play("right_bark", true);
+            console.log(player);
+            console.log(player.x);
+            console.log(player.y);
         }
 
         
